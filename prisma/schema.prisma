@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMINISTRATOR
+  WAREHOUSE
+  FINANCIAL
+  SELLER
+}
+
+enum UserState {
+  ACTIVE
+  INACTIVE
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  password   String
+  name       String
+  type       UserRole
+  status     UserState @default(ACTIVE)
+  created_at DateTime  @default(now())
+  updated_at DateTime?  @updatedAt @default(now())
+
+  Stock Stock[]
+  @@map("users")
+  Sales Sales[]
+}
+
+model Stock {
+  id          Int      @id @default(autoincrement())
+  description String
+  quantity    String
+  price       String
+  location    String
+  commission  Decimal
+  user        User     @relation(fields: [created_by], references: [id])
+  created_by  Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  Sales Sales[]
+  @@map("stock")
+}
+
+model Sales {
+  id          Int     @id @default(autoincrement())
+  stock       Stock   @relation(fields: [stock_id], references: [id])
+  stock_id    Int
+  sold_amount Int
+  discount    Decimal
+  sale        User    @relation(fields: [saleman], references: [id])
+  saleman     Int
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+
+  @@map("sales")
+}

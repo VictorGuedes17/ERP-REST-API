@@ -1,0 +1,31 @@
+version: '3'
+services:
+  app:
+    stdin_open: true
+    tty: true
+    build: .
+    command: sh -c "npx prisma db push & npm run dev"
+    env_file:
+      - .env
+    ports:
+      - 3003:3003
+    volumes:
+      - .:/home/app
+      - logvolume01:/var/log
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgreserp
+    image: 'postgres:9.6-alpine'
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "dberp"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    ports:
+      - '5432:5432'
+    volumes:
+      - database:/var/lib/postgresql/data
+volumes:
+  logvolume01: {}
+  database: {}

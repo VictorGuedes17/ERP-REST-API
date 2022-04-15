@@ -1,0 +1,6 @@
+export enum UserRole {
+  ADMINISTRATOR,
+  WAREHOUSE,
+  FINANCIAL,
+  SELLER
+}
