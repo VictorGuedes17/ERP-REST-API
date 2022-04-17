@@ -6,6 +6,7 @@ import swaggerDocument from './swagger.json';
 
 import { Routes } from './Routes';
 import jwtAuthHook from './hooks/jwtAuthHook';
+import { swaggerOptions } from './config/swagger';
 
 
 class Api {

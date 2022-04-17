@@ -1,6 +1,8 @@
 declare namespace Express {
   interface Request {
-      user: number;
+    userType: "ADMINISTRATOR" | "WAREHOUSE" | "FINANCIAL" | "SELLER";
+    userId: number;
+    userStatus: "ACTIVE" | "INACTIVE";
   }
 
   interface Response {

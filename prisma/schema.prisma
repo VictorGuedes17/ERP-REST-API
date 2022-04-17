@@ -40,14 +40,14 @@ model User {
 model Stock {
   id          Int      @id @default(autoincrement())
   description String
-  quantity    String
-  price       String
+  quantity    Int
+  price       Decimal
   location    String
   commission  Decimal
   user        User     @relation(fields: [created_by], references: [id])
   created_by  Int
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  updatedAt   DateTime @updatedAt @default(now())
 
   Sales Sales[]
   @@map("stock")
@@ -62,7 +62,7 @@ model Sales {
   sale        User    @relation(fields: [saleman], references: [id])
   saleman     Int
   created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
+  updated_at DateTime  @updatedAt @default(now())
 
   @@map("sales")
 }

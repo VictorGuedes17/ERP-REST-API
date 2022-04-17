@@ -12,10 +12,13 @@ class AuthController {
   }
 
   async login(req: Request, res: Response): Promise<Response> {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    const user = await this.authService.autentication(username, password);
-    if (!user) return res.status(422).send(HttpStatusCode.UNPROCESSABLE_ENTITY);
+    const userExists = await this.authService.getUserByEmail(email);
+    if(!userExists) return res.status(HttpStatusCode.NOT_FOUND).send();
+
+    const user = await this.authService.autentication(email, password);
+    if (!user) return res.status(HttpStatusCode.UNPROCESSABLE_ENTITY).send();
 
     const jwtSalt = process.env.JWT_SALT || 'erp12345';
 

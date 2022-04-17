@@ -1,3 +1,4 @@
+import { User } from '@prisma/client';
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import httpErrors from '../utils/httpErrors';
@@ -25,8 +26,11 @@ export default (request: Request, response: Response, next: NextFunction): NextF
   try {
     const jwtSalt = process.env.JWT_SALT || '';
     const decoded = jwt.verify(token, jwtSalt);
-    const { id }: any = decoded;
-    request.user_id = id;
+    const { user }: any = decoded;
+    const userData = user as User;
+    request.userType = userData.type;
+    request.userId = userData.id;
+    request.userStatus = userData.status;
     return next();
   } catch (error) {
     return response.status(401).json({ message: httpErrors.unauthorized('Token').toString() });
