@@ -408,13 +408,13 @@
           {
             "in": "query",
             "name": "startOf",
-            "description": "start of date search",
+            "description": "start of date search [YYYY-MM-DD]",
             "required": false
           },
           {
             "in": "query",
             "name": "endOf",
-            "description": "endOf date serch",
+            "description": "endOf date serch [YYYY-MM-DD]",
             "required": false
           }
         ],
@@ -470,7 +470,7 @@
           {
             "in": "query",
             "name": "order",
-            "description": "order by [ASC, DESC]",
+            "description": "order by [asc, desc]",
             "required": false
           }
         ],
