@@ -41,4 +41,13 @@ export default class SalesController {
     return res.status(HttpStatusCode.OK).json({ commission_amount: data });
   }
 
+  async getAllCommisions(req: Request, res: Response): Promise<Response> {
+    const { startOf, endOf, order } = req.query;
+
+    const data = await this.saleService.findAllCommisions(startOf as string | undefined, endOf as string | undefined, order as "asc" | "desc" | undefined);
+    if (typeof data === null) return res.status(HttpStatusCode.UNPROCESSABLE_ENTITY).send();
+
+    return res.status(HttpStatusCode.OK).json({ commission_amount: data });
+  }
+
 }

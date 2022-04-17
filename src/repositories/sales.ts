@@ -59,7 +59,29 @@ export default class SalesRepository {
         ]
       },
       include: {
+        stock: true
+      }
+    })
+  }
+
+  public async getComissions(startOf: string, endOf: string, order: "asc" | "desc"): Promise<ISalesStock[]> {
+    return await this.prisma.sales.findMany({
+      where: {
+        created_at: {
+          gte: `${startOf}T00:00:00.000Z`,
+          lt: `${endOf}T23:59:59.999Z`
+        }
+      },
+      orderBy: {
+        created_at: order
+      },
+      include: {
         stock: true,
+        sale: {
+          select: {
+            name: true
+          }
+        }
       }
     })
   }

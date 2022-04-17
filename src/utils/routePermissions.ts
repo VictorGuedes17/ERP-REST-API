@@ -8,4 +8,5 @@ export const ROUTE_PERMISSION: { [route: string]: UserRole[] } = {
 
   'POST/sales/': ["SELLER"],
   'GET/sales/comission/:id': ["SELLER"],
+  'GET/sales/comission/': ["FINANCIAL"],
 }
