@@ -1,10 +1,10 @@
 import { UserRole } from "@prisma/client";
 
 export const ROUTE_PERMISSION: { [route: string]: UserRole[] } = {
-  'GET/stock/:id': ["SELLER"],
-  'POST/stock/': ["SELLER"],
-  'POST/stock/itens': ["SELLER"],
-  'PUT/stock/:stockId': ["SELLER"],
+  'GET/stock/:id': ["WAREHOUSE", "SELLER"],
+  'POST/stock/': ["WAREHOUSE"],
+  'POST/stock/itens': ["WAREHOUSE"],
+  'PUT/stock/:stockId': ["WAREHOUSE"],
 
   'POST/sales/': ["SELLER"],
   'GET/sales/comission/:id': ["SELLER"],
