@@ -4,7 +4,7 @@ services:
     stdin_open: true
     tty: true
     build: .
-    command: sh -c "npx prisma db push & npm run dev"
+    command: sh -c "npx prisma db push & npx prisma db seed & npm run dev"
     env_file:
       - .env
     ports:

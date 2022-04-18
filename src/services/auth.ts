@@ -18,7 +18,7 @@ export default class AuthService {
     }
   }
 
-  public async autentication(email: string, password: string): Promise<User | null> {
+  public async autentication(email: string, password: string): Promise<Omit<User, "password"> | null> {
     try {
       return await this.userRepository.getUserByCredentials(email, password);
     } catch (error) {
