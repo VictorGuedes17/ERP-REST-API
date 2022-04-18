@@ -11,7 +11,7 @@ export default class SalesService {
 
   public async createSale(createData: Omit<Sales, "id" | "saleman" | "created_at" | "updated_at">, userId: number, itemQuantity: number): Promise<[Stock, Sales] | null> {
     try {
-      return this.salesRepository.registerSale(createData, userId, itemQuantity);
+      return await this.salesRepository.registerSale(createData, userId, itemQuantity);
     } catch (error) {
       return null;
     }

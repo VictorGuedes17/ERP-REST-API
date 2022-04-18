@@ -9,7 +9,7 @@ export default class SalesRepository {
     this.prisma = new PrismaClient();
   }
 
-  public async registerSale(createData: Omit<Sales, "id" | "saleman" | "created_at" | "updated_at">, userId: number, itemQuantity: number): Promise<[Stock, Sales]> {
+  public async registerSale(createData: Omit<Sales, "id" | "saleman" | "created_at" | "updated_at">, userId: number, itemQuantity: number): Promise<[Stock, Sales] | null> {
     const { discount, sold_amount, stock_id } = createData;
 
     return await this.prisma.$transaction([
