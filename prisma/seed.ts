@@ -5,6 +5,32 @@ import faker from 'faker';
 const prisma = new PrismaClient()
 
 async function main() {
+  await prisma.sales.deleteMany({
+    where: {
+      id: {
+        in: [1, 2, 3]
+      }
+    }
+  })
+
+  await prisma.stock.deleteMany({
+    where: {
+      id: {
+        in: [1, 2, 3]
+      }
+    }
+  })
+
+  await prisma.user.deleteMany({
+    where: {
+      id: {
+        in: [1, 2, 3, 4, 5]
+      }
+    }
+  })
+
+
+
   await prisma.user.createMany({
     data: [
       {
@@ -80,18 +106,21 @@ async function main() {
   await prisma.sales.createMany({
     data: [
       {
+        id: 1,
         discount: 0,
         saleman: 2,
         sold_amount: 3,
         stock_id: 1,
       },
       {
+        id: 2,
         discount: 0,
         saleman: 2,
         sold_amount: 4,
         stock_id: 1,
       },
       {
+        id: 3,
         discount: 20,
         saleman: 3,
         sold_amount: 1,
