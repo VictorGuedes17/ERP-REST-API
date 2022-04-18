@@ -6,6 +6,8 @@
 2 - Execute `docker-compose build`
 3 - Execute `docker-compose up`
 
+**Obs**: Caso aconteça algum erro ao rodar o comando `docker-compose up`, tente executar novamente, o problema pode acontecer devido as configurações de push DB do ORM serem para ambinete de homologação.
+
 Ao executar esses comandos será realizado a modelagem inicial na base de dados, criando alguns dados por padrão para poder testar o sistema. Os dados se encontram na pasta Prisma/seeds.ts. Para agilizar o teste segue abaixo um usuário por perfil, criados ao inicializar:
 
 `Administrador`
