@@ -9,7 +9,7 @@ export default class AuthRoutes {
 
   public router: express.Router = express.Router();
 
-  public routes(app:any) : any {
+  public routes(app: express.Application): any {
     this.router.post('/', (req: Request, res: Response) => this.authController.login(req, res));
 
     app.use('/auth', this.router);

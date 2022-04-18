@@ -9,7 +9,7 @@ export default class SalesRoutes {
 
   public router: express.Router = express.Router();
 
-  public routes(app: any): any {
+  public routes(app: express.Application): any {
     this.router.post('/', (req, res, next) => routePermissionMiddleware(req, res, next), (req: Request, res: Response) => this.salesController.create(req, res));
     this.router.get('/comission/:id', (req, res, next) => routePermissionMiddleware(req, res, next), (req: Request, res: Response) => this.salesController.getSellerCommision(req, res));
     this.router.get('/comission/', (req, res, next) => routePermissionMiddleware(req, res, next), (req: Request, res: Response) => this.salesController.getAllCommisions(req, res));
